@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1."> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Todo app</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles/reset.css">
+  <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+  <div id="todo-app">
+    <header class="header">
+      <div class="header__inner">
+        <h1 class="header__logo">TODO</h1>
+        <button class="button header__button" v-on:click="darkMode"></button>
+      </div>
+      <div class="todo__item header__new-todo">
+        <span class="todo__checked"></span>
+        <input class="header__input" type="text" placeholder="Create a new todo..." v-model="newTodo" v-on:keyup.enter="addTodo">
+      </div>
+    </header>
+    <main class="main-todo">
+      <div class="todo">
+        <ul id="dragZone">
+          <li class="todo__item" v-for='todo, index in todos' v-if="filter === todo[1] || filter === null">
+            <input type="checkbox" v-bind:id="index" v-bind:checked="todo[1]" v-on:change="check"/>
+            <label class="todo__checked" v-bind:for="index"></label>
+            <label class="todo__name" v-bind:for="index">{{todo[0]}}</label>
+            <button class="button todo__button" v-on:click="deleteTodo(index)"></button>
+          </li>
+        </ul>
+        <div class="todo-footer">
+          <p class="button todo-footer__items-count">{{ todosActive }} items left</p>
+          <button class="button todo-footer__button" v-on:click="clearCompleted">Clear Completed</button>
+          <div class="todo-footer__filter">
+            <button v-bind:class="{button_active: filter === null}" class="button todo-footer__button" v-on:click='filterTodos(null)'>All</button>
+            <button v-bind:class="{button_active: filter === false}" class="button todo-footer__button" v-on:click='filterTodos(false)'>Active</button> 
+            <button v-bind:class="{button_active: filter}" class="button todo-footer__button" v-on:click='filterTodos(true)'>Completed</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+  </div>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+  <!-- development version, includes helpful console warnings -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+</html>

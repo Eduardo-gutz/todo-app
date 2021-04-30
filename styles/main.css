@@ -1,0 +1,210 @@
+:root {
+  /* primary colors */
+  --Bright-Blue: #3a7bfd;
+  --Check-Background: linear-gradient(135deg,#57ddff, #c058f3);
+
+  /* neutral colors */
+  --Very-Light-Gray: #fafafa;
+  --Very-Light-Grayish-Blue: #e4e5f1;
+  --Light-Grayish-Blue: #d2d3db;
+  --Dark-Grayish-Blue: #9394a5;
+  --Very-Dark-Grayish-Blue: #484b6a;
+
+  /* typography */
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+
+  --icon: url(../images/icon-moon.svg) center/cover no-repeat;
+  --bg-image: url(../images/bg-mobile-light.jpg) center/cover no-repeat;
+  --shadow:  8px 8px 18px #777a9277;
+}
+body.dark {
+  --Very-Light-Grayish-Blue: #161722;
+  --Very-Light-Gray: #25273c;
+  --Very-Dark-Grayish-Blue: #cacde8;
+  --Light-Grayish-Blue-hover: #e4e5f1;
+  --Dark-Grayish-Blue: #777a92;
+  --Light-Grayish-Blue: #4d5066;
+  --Very-Light-Gray: #393a4c;
+
+  --icon: url(../images/icon-sun.svg) center/cover no-repeat;
+  --bg-image: url(../images/bg-mobile-dark.jpg) center/cover no-repeat;
+  --shadow:  8px 8px 18px #00000088;
+}
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+.header {
+  position: relative;
+  background: var(--bg-image);
+  height: 11rem;
+  width: 100vw;
+  padding: 2.5rem 1.5rem;
+}
+.header__inner {
+  display: flex;
+  width: 100%;
+  max-width: 27rem;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.header__logo {
+  font-size: 1.5rem;
+  letter-spacing: .5rem;
+  color: #fafafa;
+}
+.header__button {
+  background: var(--icon);
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.header__new-todo {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  width: 84%;
+  max-width: 27rem;
+  transform: translate(-50%);
+  box-shadow: var(--shadow);
+}
+.header__input {
+  width: 85%;
+  height: 100%;
+  background-color: var(--Very-Light-Gray);
+  color: var(--Very-Dark-Grayish-Blue);
+}
+.main-todo {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--Very-Light-Grayish-Blue);
+  width: 100vw;
+  min-height: calc(100vh - 11rem);
+}
+.todo {
+  position: absolute;
+  top: -1.5rem;
+  background-color: var(--Very-Light-Gray);
+  width: 84%;
+  max-width: 27rem;
+  border-radius: .3rem;
+  color: var(--Very-Dark-Grayish-Blue);
+  box-shadow: var(--shadow);
+}
+.todo__item {
+  display: flex;
+  background-color: var(--Very-Light-Gray);
+  height: 2.5rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: .3rem;
+  border-bottom: 1px solid var(--Light-Grayish-Blue);
+
+  font-size: .68rem;
+}
+.todo__checked {
+  /* background-color: var(--Bright-Blue); */
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  border: 1px solid var(--Light-Grayish-Blue);
+}
+.todo__name {
+  width: 70%;
+  overflow-wrap: break-word;
+}
+.todo__button {
+  background: url(../images/icon-cross.svg) center/cover no-repeat;
+  width: .7rem;
+  height: .7rem;
+}
+.todo-footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.5rem;
+  padding: 0 1rem;
+
+  font-size: .6rem;
+  font-weight: 400;
+}
+.todo-footer__filter {
+  display: flex;
+  background-color: var(--Very-Light-Gray);
+  position: absolute;
+  top: 3.3rem;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  border-radius: .3rem;
+  box-shadow: var(--shadow);
+  
+  font-weight: 700;
+}
+.button {
+  color: #777a92;
+  font-size: .68rem;
+}
+.todo-footer__button {
+  font-weight: 700;
+}
+.button_active {
+  color: var(--Bright-Blue);
+}
+input[type='checkbox']:checked + .todo__checked{
+  background: url(../images/icon-check.svg) center no-repeat, var(--Check-Background);
+}
+input[type='checkbox']:checked ~ .todo__name {
+  text-decoration: line-through;
+  opacity: .7;
+}
+
+/* medias */
+@media (min-width: 767px) {
+  :root {
+    font-size: 20px;
+    --bg-image: url(../images/bg-desktop-light.jpg) center/cover no-repeat
+  }
+  body.dark {
+    --bg-image: url(../images/bg-desktop-dark.jpg) center/cover no-repeat
+  }
+  .todo-footer__filter {
+    background-color: transparent;
+    width: 50%;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    box-shadow: none;
+  }
+}
+@media (min-width: 1023px) {
+  .header{
+    height: 13rem;
+    padding-top: 3.5rem;
+  }
+  .header__new-todo {
+    bottom: 3.5rem;
+  }
+  .todo {
+    top: -2.5rem;
+  }
+  .todo__button {
+    visibility: hidden;
+  }
+  .todo__item,
+  .todo__name,
+  .todo__checked,
+  .button {
+    cursor: pointer;
+  }
+  .button:hover {
+    color: var(--Very-Dark-Grayish-Blue);
+  }
+  .todo__item:hover > .todo__button {
+    visibility: visible;
+  }
+}
